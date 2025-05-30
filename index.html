@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dessert Personality Matcher</title>
+    <style>
+      body {
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        background: #fff0f5;
+        color: #4b2e2e;
+        padding: 2rem;
+        max-width: 600px;
+        margin: auto;
+        border: 4px dashed #f7c4c4;
+        border-radius: 20px;
+        box-shadow: 0 0 20px #ffb6c1;
+      }
+      h1 {
+        text-align: center;
+        color: #ff69b4;
+        font-size: 2rem;
+      }
+      .description {
+        background: #ffe4e1;
+        border-radius: 15px;
+        padding: 1rem;
+        margin: 1.5rem 0;
+        border: 2px dashed #ffaebc;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+      .slider {
+        margin: 1rem 0;
+      }
+      label {
+        font-weight: bold;
+        font-size: 1.1rem;
+      }
+      input[type="number"] {
+        width: 100%;
+        padding: 0.6rem;
+        font-size: 1rem;
+        border-radius: 8px;
+        border: 2px solid #ffc0cb;
+        background: #fffafa;
+      }
+      button {
+        display: block;
+        margin: 2rem auto;
+        padding: 0.75rem 1.5rem;
+        background: #ffb6c1;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        transition: transform 0.2s;
+      }
+      button:hover {
+        transform: scale(1.05);
+        background: #ff69b4;
+      }
+      .result {
+        margin-top: 2rem;
+        text-align: center;
+        padding: 1rem;
+        background: #ffe0ec;
+        border-radius: 20px;
+        border: 2px dashed #ffc0cb;
+      }
+      .result h2 {
+        margin: 0.5rem 0;
+        font-size: 1.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🍰 What's Your Dessert Personality? 🍮</h1>
+
+    <div class="description">
+      Ever wondered what dessert mirrors your soul? This quirky yet insightful
+      web app blends playfulness with personality theory to match you with an
+      iconic sweet treat — from the calm depth of <strong>Kulfi</strong> to the
+      spontaneous chaos of <strong>Falooda</strong>.<br /><br />
+
+      <strong>How it works:</strong> Rate yourself on five traits —
+      Introversion, Energy, Spontaneity, Sweetness, and Weirdness — and let our
+      fuzzy logic-inspired matcher do the rest. It's a lighthearted mirror of
+      your quirks, moods, and charm — served with sugar on top.<br /><br />
+
+      🎯
+      <em>"Diagnosed with a rare condition: 100% treat energy."</em>
+    </div>
+
+    <div class="slider">
+      <label for="introversion">Introversion (1–10):</label>
+      <input type="number" id="introversion" min="1" max="10" value="5" />
+    </div>
+    <div class="slider">
+      <label for="energy">Energy (1–10):</label>
+      <input type="number" id="energy" min="1" max="10" value="5" />
+    </div>
+    <div class="slider">
+      <label for="spontaneity">Spontaneity (1–10):</label>
+      <input type="number" id="spontaneity" min="1" max="10" value="5" />
+    </div>
+    <div class="slider">
+      <label for="sweetness">Sweetness (1–10):</label>
+      <input type="number" id="sweetness" min="1" max="10" value="5" />
+    </div>
+    <div class="slider">
+      <label for="weirdness">Weirdness (1–10):</label>
+      <input type="number" id="weirdness" min="1" max="10" value="5" />
+    </div>
+
+    <button onclick="matchDessert()">🎀 Tell Me My Dessert! 🎀</button>
+
+    <div class="result" id="result"></div>
+
+    <script>
+      function matchDessert() {
+        const introversion = parseInt(
+          document.getElementById("introversion").value
+        );
+        const energy = parseInt(document.getElementById("energy").value);
+        const spontaneity = parseInt(
+          document.getElementById("spontaneity").value
+        );
+        const sweetness = parseInt(document.getElementById("sweetness").value);
+        const weirdness = parseInt(document.getElementById("weirdness").value);
+
+        let result = {
+          dessert: "Classic Cookie",
+          emoji: "🍪",
+          message: "Warm, balanced, and universally loved.",
+        };
+
+        if (introversion >= 8 && energy <= 3 && sweetness >= 7) {
+          result = {
+            dessert: "Rasgulla",
+            emoji: "🍥",
+            message:
+              "Soft-hearted and traditional. You absorb emotions like syrup.",
+          };
+        } else if (introversion >= 8 && sweetness >= 7 && weirdness <= 4) {
+          result = {
+            dessert: "Kaju Katli",
+            emoji: "💎",
+            message: "Elegant, thoughtful, and quietly loved by many.",
+          };
+        } else if (energy >= 8 && spontaneity >= 7 && weirdness >= 7) {
+          result = {
+            dessert: "Falooda",
+            emoji: "🍧",
+            message: "A mix of everything — exciting, cool, and unpredictable!",
+          };
+        } else if (energy >= 7 && sweetness >= 7 && weirdness >= 6) {
+          result = {
+            dessert: "Sprinkled Donut",
+            emoji: "🍩",
+            message: "You’re a color bomb of happiness and chaos.",
+          };
+        } else if (sweetness >= 8 && energy <= 5 && introversion >= 5) {
+          result = {
+            dessert: "Gulab Jamun",
+            emoji: "🍮",
+            message:
+              "Rich and comforting. You bring people together like family.",
+          };
+        } else if (introversion <= 4 && energy >= 8 && weirdness >= 6) {
+          result = {
+            dessert: "Jalebi",
+            emoji: "🧡",
+            message:
+              "Twisty, golden, and full of fire. You’re impossible to ignore.",
+          };
+        } else if (sweetness <= 4 && introversion >= 6 && energy <= 5) {
+          result = {
+            dessert: "Dark Chocolate",
+            emoji: "🍫",
+            message: "Not everyone's taste, but admired by those who get you.",
+          };
+        } else if (introversion >= 5 && energy <= 5 && weirdness >= 6) {
+          result = {
+            dessert: "Kulfi",
+            emoji: "❄️",
+            message:
+              "You appear reserved, but once people taste your depth — they’re hooked.",
+          };
+        } else if (sweetness >= 5 && spontaneity <= 5 && weirdness <= 5) {
+          result = {
+            dessert: "Soan Papdi",
+            emoji: "🍬",
+            message: "Light, flaky, and always present at the right time.",
+          };
+        } else if (sweetness >= 5 && introversion >= 5 && weirdness >= 5) {
+          result = {
+            dessert: "Besan Ladoo",
+            emoji: "🟡",
+            message: "You’re firm, round, and full of old-school charm.",
+          };
+        }
+
+        document.getElementById("result").innerHTML = `
+        <h2>${result.emoji} ${result.dessert}</h2>
+        <p>${result.message}</p>
+      `;
+      }
+    </script>
+  </body>
+</html>
